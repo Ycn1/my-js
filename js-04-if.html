@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>if</title>
+	<style type="text/css">
+		input{
+
+		}
+		#omas1{
+			display: none;
+			height: 100px;
+			width: 100px;
+			border:1px solid #000;
+		}
+	</style>
+	<script type="text/javascript">
+			window.onload=function(){
+			var bt=document.getElementById('btn');
+			var omas=document.getElementById('omas1');
+			bt.onclick=function (){	
+				if(omas.style.display=='none'){
+				omas.style.display='block';
+				}
+				else{
+				omas.style.display='none';
+					}
+				}
+			}
+	</script>
+</head>
+<body>
+	<input type="button" name="" value="消息" id="btn">
+	<div id="omas1">
+		您还没有新消息。。。。
+	</div>
+</body>
+</html>

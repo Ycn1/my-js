@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js-02</title>
+	<style type="text/css">
+		.box{
+			height: 100px;
+			width: 100px;
+			background: grey;
+		}
+	</style>
+	<script type="text/javascript">
+		function toblue(){
+			var B1=document.getElementById('box1');
+			 B1.style.height='400px';
+			 B1.style.width='400px';
+			 B1.style.background='blue';
+		}
+		function togrey() {
+			var B1=document.getElementById('box1');
+			B1 .style.height='200px';
+			B1.style.width='200px';
+			B1.style.background='grey';
+		}
+	</script>
+</head>
+<body>
+	<div class="box" id="box1" onmouseover="toblue()" onmouseout="togrey()"></div>
+</body>
+</html>
