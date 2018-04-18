@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript">
+	window.onload=function(){
+		var oTxt1=document.getElementById('txt1');
+		var oTxt2=document.getElementById('txt2');
+		var oBtn=document.getElementById('btn');
+		oBtn.onclick=function(){
+			alert(oTxt2.value);
+		}
+
+	}
+</script>
+<body>
+	<input type="text" id="txt1">
+	<input type="text" id="txt2">
+	<input type="button" id="btn" value="求和">
+</body>
+</html>
