@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul{
+			width: 200px;
+			height: 100px;
+			/*border: 1px solid #000;*/
+		}
+		li{
+			width: 200px;
+			height: 50px;
+			/*border: 1px solid #000;*/
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function () {
+			var oA=document.getElementsByTagName('a');
+			// var oAA=oA.parentNode;
+			for(var i=0;i<oA.length;i++){
+				oA[i].onclick=function(){
+					
+					this.parentNode.style.display='none';
+					}
+				}
+		}
+	</script>
+</head>
+<body>
+	<ul>
+		<li>我是一朵小花花<a href="javascript:;">hidden</a></li>
+	
+		<li>我是一朵小花花<a href="javascript:;">hidden</a></li>
+	</ul>
+</body>
+</html>

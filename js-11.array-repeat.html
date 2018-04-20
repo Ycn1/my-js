@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>array-repeat</title>
+</head>
+<script>
+	var arr=[10,20,30,20,40,50];
+	console.log(arr);
+	function  reSult(arr){
+		var result=[];
+		for(var i=0;i<arr.length;i++){
+			var isD=false;
+			for(var j=0;j<result.length;j++){
+				if(arr[i]==result[j]){
+					 isD=true;
+					break;
+				}
+			}
+			if(!isD){
+			result.push(arr[i]);
+			}
+			
+		}
+		return result;
+	}
+
+		console.log(reSult(arr));
+</script>
+<body>
+	
+</body>
+</html>

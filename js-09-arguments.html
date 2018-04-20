@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>arguments</title>
+	<style type="text/css">
+		#box{
+			height: 100px;
+			width: 100px;
+			border: 1px solid #000;
+		}
+		.kd{
+			background: red;
+		}
+	</style>
+	<script type="text/javascript">
+		// window.onload=function(){
+		// 	var oBtn1=document.getElementById('btn1');
+		// 	var oBtn2=document.getElementById('btn2');
+		// 	var oBox=document.getElementById('box');
+		// 	oBtn1.onclick = function () {
+		// 		oBox.className='kd';
+		// 		}
+		// 	oBtn2.onclick = function(){
+		// 		alert(getComputedStyle(oBox,false)['backgroundColor']);
+		// 		}
+		// 	}
+		window.onload=function(){
+			function css(obj,attr,value){
+				if(arguments.length>2){
+					obj.style[attr]=value;
+				}
+				else{
+					alert(getComputedStyle(arguments[0],false)[arguments[1]]);
+				}
+
+			}
+			var oBtn1=document.getElementById('btn1');
+			var oBtn2=document.getElementById('btn2');
+			var oBox=document.getElementById('box');
+			oBtn1.onclick = function () {
+				css(oBox,'backgroundColor','red');
+				}
+			oBtn2.onclick = function(){
+				css(oBox,'backgroundColor');
+				}
+			}
+
+
+
+	</script>
+</head>
+<body>
+	<input type="button" name="" value="变红" id="btn1">
+	<input type="button" name="" value="获取样式" id="btn2">
+	<div id="box"></div>
+</body>
+</html>

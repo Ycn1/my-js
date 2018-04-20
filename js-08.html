@@ -4,15 +4,25 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script type="text/javascript">
-		function mas(){
-			var a=1;
-			function show(){
-				var a=11;
-				return a;
+		// function mas(){
+		// 	var a=1;
+		// 	function show(){
+		// 		var a=11;
+		// 		return a;
+		// 	}
+		// 	alert(show());
+		// }
+		// mas();
+		
+		function fact(n){
+			if(n<=1){
+				return 1;
 			}
-			alert(show());
+			else{
+				return n*fact(n-1);
+			}
 		}
-		mas();
+		alert(fact(5));
 	</script>
 </head>
 <body>
