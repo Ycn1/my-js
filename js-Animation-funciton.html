@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			margin: 0;	
+			padding: 0;
+			height: 3000px;
+		}
+		#box{
+			height: 200px;
+			width: 200px;
+			background: red;
+			position: absolute;
+			/*bottom: 0px;*/
+			right: 0px;
+		}
+	</style>
+	<script type="text/javascript">
+		var timer = '';
+			function animation(obj,attr,iTarget){
+				clearInterval(obj.timer);
+				obj.timer = setInterval (function (){
+					var curr = parseFloat(getComputedStyle(obj,false)[attr]);
+					var iSpeed='';
+					if (curr>iTarget){
+						iSpeed= -10;
+					}
+					else{
+						iSpeed= 10;
+					}
+					if(Math.abs(curr - iTarget) < Math.abs(iSpeed)){
+						clearInterval(obj.timer);
+						obj.style[attr] = iTarget +'px';
+						}
+					else{
+						obj.style[attr] = curr + iSpeed +'px';
+					}
+				},50)
+			}
+		window.onscroll = function (){
+			var oBox = document.getElementById('box');
+			var iHeight = document.innerHeight;
+			var iTop = document.body.scrollTop || document.documentElement.scrollTop;
+			var oHeight = iHeight + iTop - oBox.offsetHeight;
+			animation (oBox,'Top',oHeight);
+		}
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

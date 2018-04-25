@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>colock</title>
+	<style type="text/css">
+		#box{
+			background: #fff;
+			height: 200px;
+			width: 400px;
+			margin:100px auto;
+		}
+		img{
+			width: 50px;
+			height: 50px;
+		}
+	</style>
+	<script type="text/javascript">
+		function toStr(n){
+			if(n>9){
+				return ''+n;
+			}
+			else{
+				return '0'+n;
+			}
+		}
+		window.onload = function () {
+			var oBox = document.getElementById('box');
+			var oImg = document.getElementsByTagName('img');
+			
+			
+			function timer (){
+				for(var i =0 ;i<oImg.length;i++){
+					var now = new Date();
+					var h = now.getHours();
+					var m= now.getMinutes();
+					var s = now.getSeconds();
+					var arr = toStr(h)+toStr(m)+toStr(s);
+					// alert(arr);
+					oImg[i].src='images/'+arr.charAt(i)+'.png';
+					console.log(i);
+				}
+			}
+			setInterval(timer,1000);
+			timer();
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+			<img src="images/0.png" alt="">
+			<img src="images/1.png" alt="">
+			:
+			<img src="images/2.png" alt="">
+			<img src="images/3.png" alt="">
+			:
+			<img src="images/4.png" alt="">
+			<img src="images/9.png" alt="">
+		</div>	
+</body>
+</html>

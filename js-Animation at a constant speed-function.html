@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Animation at a constant speed function</title>
+	<style type="text/css">
+		div{
+			height: 100px;
+			width: 100px;
+			border: 1px solid #000;
+			background: pink
+			}
+	</style>
+	<script type="text/javascript">
+		window.onload = function (){
+			var timer = '';
+			function animation(obj,attr,iTarget){
+				clearInterval(obj.timer);
+				obj.timer = setInterval (function (){
+					var curr = parseFloat(getComputedStyle(obj,false)[attr]);
+					var iSpeed='';
+					if(attr == 'opacity'){
+					    curr = curr *100;
+						if (curr>iTarget){
+							iSpeed= -10;
+						}
+						else{
+							iSpeed= 10;
+						}
+						if(Math.abs(curr - iTarget) < Math.abs(iSpeed)){
+							clearInterval(obj.timer);
+							obj.style[attr] = iTarget/100;
+							}
+						else{
+							obj.style[attr] = (curr + iSpeed)/100;
+						}
+					}
+					if (curr>iTarget){
+						iSpeed= -10;
+					}
+					else{
+						iSpeed= 10;
+					}
+					if(Math.abs(curr - iTarget) < Math.abs(iSpeed)){
+						clearInterval(obj.timer);
+						obj.style[attr] = iTarget/100;
+						}
+					else{
+						obj.style[attr] = curr + iSpeed +'px';
+					}
+				},50)
+			}
+			var oBox1 = document.getElementById('box1');
+			var oBox2 = document.getElementById('box2');
+			var oBox3 = document.getElementById('box3');
+			oBox1.onmouseover = function (){
+				animation(this,'width','400');
+			}
+			oBox1.onmouseout = function (){
+				animation (this,'width','100');
+			}
+			oBox2.onmouseover = function (){
+				animation (this ,'height','400');
+			}
+			oBox2.onmouseout = function (){
+				animation (this,'height','100');
+			}
+			oBox3.onmouseover = function (){
+				animation (this ,'opacity','100');
+			}
+			oBox3.onmouseout = function (){
+				animation (this,'opacity','30');
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div id="box1">变宽</div>
+	<div id="box2">变高</div>
+	<div id="box3">变透明度</div>
+</body>
+</html>

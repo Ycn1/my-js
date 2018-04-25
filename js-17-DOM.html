@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM</title>
+	<script type="text/javascript">
+		window.onload = function (){
+			var  oTxt=document.getElementById('Txt');
+			var  oBtn=document.getElementById('Btn');
+			var  oUl=document.getElementById('ul1');
+			oBtn.onclick = function (){
+				var oVal = document.createElement('li');
+				oVal.innerHTML=oTxt.value;
+				// oUl.appendChild(oVal);
+				// oUl.insertBefore(oVal,oUl.children[0]);
+				oUl.insertBefore(oVal,oUl.firstChild);
+				var oA =document.createElement('a');
+				oA.innerHTML='del';
+				oA.href='javascript:;'
+				oVal.appendChild(oA);
+				oA.onclick = function(){
+					oUl.removeChild(oVal);
+				} 
+			}
+			console.log(oUl);
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="Txt">
+	<input type="button" name="" value="创建" id="Btn">
+	<ul id="ul1">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</body>
+</html>

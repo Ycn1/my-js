@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>xiaomi</title>
+	<style type="text/css">
+		#box{
+			width: 500px;
+			height: 300px;
+			border: 1px solid #000;
+			margin:0 auto;
+			position: relative;
+			overflow: hidden;
+		}
+		#box #img1{
+			width: 1500px;
+			height: 300px;
+			margin-top: 0px;
+			margin-left:-40px;
+			padding:0px;
+		}
+		#box #img1 li{
+			list-style: none;
+			/*position: absolute;
+			top: 0px;
+			left: 0px;*/
+			float: left;
+		}
+		#box img {
+			height: 300px;
+			width: 500px;
+		}
+		.leftArrow,.rightArrow{
+			display:inline-block;
+			width:30px;
+			height:60px;
+			line-height:60px;
+			text-align:center;
+			font-size:24px;
+			color:#fff;
+			background:rgba(0,0,0,0.3);
+			position:absolute;
+			top:120px;
+			z-index: 50;
+		}
+		.leftArrow:hover,.rightArrow:hover{
+			background:rgba(0,0,0,0.3);
+			cursor: pointer;
+			}
+		.leftArrow{
+			left:0px;
+			}
+		.rightArrow{
+			right:0px;
+			}
+		#btn-box{
+			width: 80px;
+			position:absolute;
+			right:20px;
+			bottom:20px;
+			z-index:50;
+		}
+	#btn-box li{
+			width:10px;
+			height:10px;
+			border:1px solid #000;
+			border-radius:50%;
+			margin-right:5px;
+			cursor:pointer;
+			float: left;
+			list-style: none;
+			z-index: 50;
+		}
+		.active{
+			background: red;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function (){
+			var oBtn1= document.getElementById('leftbtn');
+			var oBtn2 = document.getElementById('rightbtn');
+			var oImg1= document.getElementById('img1').children;
+			var oImg2= document.getElementById('img1');
+			var oMou= document.getElementById('img1');
+			var oBtnBox = document.getElementById("btn-box").children;
+			var now ='';
+			var timer ='';
+			oBtn2.onclick = function (){
+				now++;
+				if(now>= oImg1.length){
+					now=0;
+				}
+				tab();
+				}
+			oBtn1.onclick = function (){
+				
+				now--;
+				if (now<0){
+					now = oImg1.length-1;
+				}
+				tab();
+				}
+			function tab (){
+				for (var i=0;i<oImg1.length;i++){
+					oBtnBox[i].className = '';
+				}
+				oImg2.style.marginLeft= -500 * now + 'px';
+				oBtnBox[now].className='active';
+			}
+			for(var i=0;i<oBtnBox.length;i++){
+				oBtnBox[i].index=i;
+				oBtnBox[i].onclick = function (){
+					oBtnBox.className= 'active';
+					now= this.index;
+					tab();
+				}
+			}
+			// timer=setInterval (function (){
+			// 	now++;
+			// 	if(now>= oImg1.length){
+			// 		now=0;
+			// 	}
+			// 	tab();
+			// },3000)	;
+			// oMou.onmouseover = function (){
+			// 	clearInterval (timer);
+			// }
+			// oMou.onmouseout = function (){
+			// 	timer=setInterval (function (){
+			// 	now++;
+			// 	if(now>= oImg1.length){
+			// 		now=0;
+			// 	}
+			// 	tab();
+			// },3000)	;
+			// }
+
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<ul id="img1">
+			<li><img src="images/b1.jpg"></li>
+			<li><img src="images/b2.jpg"></li>
+			<li><img src="images/b3.jpg"></li>
+		</ul>
+		 <span class="leftArrow" id="leftbtn">&lt;</span>
+	     <span class="rightArrow" id="rightbtn">&gt;</span>
+	     <ul id="btn-box">
+	      	 <li class="active"></li>
+	         <li></li>
+	         <li></li>
+	     </ul>
+     </div>
+</body>
+</html>

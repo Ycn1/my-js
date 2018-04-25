@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#nav{
+			height: 100px;
+			width: 100%;
+			background: blue;
+		}
+		#top-nav{
+			height: 0px;
+			width: 100%;
+			background: red;
+			position: fixed;
+			top: 0px;
+		}
+		#m1{
+			height: 5000px;
+			width: 100%;
+
+		}
+	</style>
+	<script type="text/javascript">
+		var isShow = false;
+		
+			var timer = '';
+
+	
+				function animation(obj,attr,iTarget){
+				clearInterval(obj.timer);
+				obj.timer = setInterval (function (){
+					var curr = parseFloat(getComputedStyle(obj,false)[attr]);
+					var iSpeed=0;
+					if (curr>iTarget){
+						iSpeed= -10;
+					}
+					else{
+						iSpeed= 10;
+					}
+					if(Math.abs(curr - iTarget) < Math.abs(iSpeed)){
+						clearInterval(obj.timer);
+						obj.style[attr] = iTarget/100;
+						}
+					else{
+						obj.style[attr] = curr + iSpeed +'px';
+					}
+				},50);
+			
+		}
+	window.onscroll = function (){
+			var oTop = document.getElementById('top-nav');
+			var oMain = document.getElementById('m1');
+			var iHeight = document.body.scrollTop || document.documentElement.scrollTop;
+			if (iHeight >= 100) {
+				if (!isShow){
+					animation (oTop,'height',100);
+					isShow= true;
+					oMain.style.marginTop = 100 +'px';
+				}
+			}
+			else {
+				if(isShow){
+					animation (oTop,'height',0);
+					isShow= false;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="nav"></div>
+	<div id="top-nav"></div>
+	<div id="m1">123441209274<br>123rf24fg2g</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Animation at a constant speed</title>
+	<style type="text/css">
+		#box{
+			height: 100px;
+			width: 400px;
+			background: blue;
+			position: relative;
+			bottom: 0px;
+			left: -400px;
+		}
+		#sub{
+			height: 100px;
+			width: 100px;
+			background: pink;
+			position:absolute;
+			right: -100px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function (){
+			var timer=null;
+			function animation (){
+				clearInterval(timer);
+				timer = setInterval(function (){
+					if (oBox.offsetLeft<0){
+						iSpeed= 20;
+					}
+					else{
+						iSpeed=-20;
+					}
+					if (Math.abs(0-oBox.offsetLeft) <= Math.abs(iSpeed)){	
+						oBox.style.left='0px';
+						clearInterval(timer);
+					}
+					else{
+						oBox.style.left = oBox.offsetLeft + iSpeed +'px';
+					}
+				},30);
+			}
+			function animation2 (){
+				clearInterval(timer);
+				timer = setInterval(function (){
+					if (oBox.offsetLeft <-400){
+						iSpeed= 20;
+					}
+					else{
+						iSpeed=-20;
+					}
+					if (Math.abs(-400-oBox.offsetLeft) <= Math.abs(iSpeed)){	
+						oBox.style.left='-400px';
+						clearInterval(timer);
+					}
+					else{
+						oBox.style.left = oBox.offsetLeft + iSpeed +'px';
+					}
+				},30);
+			}
+			var oBox = document.getElementById('box');
+			var oSub = document.getElementById('sub');
+			oBox.onmouseover = function (){
+				animation();
+				// alert ('123');
+			}
+			oBox.onmouseout  = function (){
+				animation2();
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="sub"></div>
+	</div>
+</body>
+</html>

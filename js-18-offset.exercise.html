@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>offset</title>
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;	
+		}
+		#btn{
+
+		}
+		#box{
+			margin-top: 100px;
+			background: red;
+			height: 100px;
+			width: 100px;
+			border: 1px solid #000;
+		}
+
+	</style>
+	<script type="text/javascript">
+		window.onload = function (){
+			var oBtn =document.getElementById('btn');
+			var oBox =document.getElementById('box');
+			var timer='';
+			oBtn.onclick = function () {
+				// clearInterval(timer);
+				// if(oBox.offsetLeft<300){
+				// 	iSpeed = 10;
+				// }
+				// else{
+				// 	iSpeed=-10;
+				// }
+				timer= setInterval(functin(){
+					// if(Math.abs(300-oBox.offsetLeft)<=Math.abs(iSpeed)){
+					// 
+
+					// }
+					if(oBox.offsetLeft<=300){
+						// oBox.style.left = offsetLeft + 10 +'px';
+						alert(oBox.offsetLeft);
+					}
+				},1000)
+			} 
+		}
+	</script>
+</head>
+<body>
+	<input type="button" name="" value="开始动画" id="btn">
+	<div id="box"></div>
+</body>
+</html>
