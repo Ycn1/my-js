@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bird</title>
+	<style type="text/css">
+		#bird {
+			height: 50px;
+			width: 50px;
+			position: relative;
+			top: 0px;
+			left: 50%;
+		}
+		#bird img{
+			height: 50px;
+			width: 50px;
+		}
+		.topline{
+			position: absolute;
+			width: 30px;
+			top: 0px;
+			background: green;
+			left: 100%;
+		}
+		.bottomline{
+			width: 30px;
+			position: absolute;
+			bottom: 0px;
+			background: green;
+			left: 100%
+		}
+	</style>
+	<script type="text/javascript">
+		function getRandom(min,max){
+			return Math.round(min + (max-min)* Math.random());
+		}
+		var moveBirdTimer = null;
+		var moveLineTimer = null;
+		var addLineTimer = null;
+		window.onload = function (){
+			function end(){
+				clearInterval(addLineTimer);
+				clearInterval(moveLineTimer);
+				clearInterval(moveBirdTimer);
+			}
+			function checkKiss(oDiv,oDiv2){
+				if((oDiv.offsetWidth + oDiv.offsetLeft >oDiv2.offsetLeft)&&
+					  	(oDiv2.offsetLeft + oDiv2.offsetWidth >oDiv.offsetLeft)&&
+					  	(oDiv.offsetTop+oDiv.offsetWidth > oDiv2.offsetTop)&&
+					  	(oDiv2.offsetHeight+oDiv2.offsetTop >oDiv.offsetTop)){
+					  	return true;
+					  }else{
+					  	return false;
+					  }
+			}
+			var oBird = document.getElementById('bird');
+			function addLine(){
+				var oTopLine = document.createElement('div');
+				var oBottomLine = document.createElement('div');
+				oTopLine.className = 'topline';
+			    oTopLine.Data = 100;
+				oBottomLine.className = 'bottomline';
+				var h =getRandom(300,400);
+				oTopLine.style.height = h +'px';
+				oBottomLine.style.height = window.innerHeight - h - 200 +'px';
+				document.body.appendChild(oTopLine);
+				document.body.appendChild(oBottomLine);
+			}
+			clearInterval(addLineTimer);
+			addLineTimer = setInterval(function(){
+				addLine();
+			},800)
+			clearInterval(moveLineTimer);
+			moveLineTimer = setInterval(function(){
+				var aTopLine = document.getElementsByClassName('topline');
+				var aBottomLine = document.getElementsByClassName('bottomline');
+				for(var i =0;i<aTopLine.length;i++){
+					if(checkKiss(oBird,aTopLine[i]) || checkKiss(oBird,aBottomLine[i])){
+						end();
+					}
+					if(aTopLine[i].Data < '-10'){
+						document.body.removeChild(aTopLine[i]);
+						document.body.removeChild(aBottomLine[i]);
+					}
+					aBottomLine[i].style.left  = aTopLine[i].style.left = aTopLine[i].Data -1 +'%';
+					aTopLine[i].Data = aTopLine[i].Data-1;
+				}
+			},50)
+			var iSpeed = 0;
+			clearInterval(moveBirdTimer);
+			moveBirdTimer = setInterval (function(){
+				iSpeed +=1;
+				var t = oBird.offsetTop + iSpeed;
+				if(t <0 ){
+					end();
+				}else if(t > window.innerHeight - oBird.offsetHeight){
+					end();
+				}
+				oBird.style.top = t + 'px';
+			},30)
+			document.onkeydown = function(){
+				iSpeed -=20;
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div id="bird">
+		<img src="images/小鸟.gif">
+	</div>
+</body>
+</html>

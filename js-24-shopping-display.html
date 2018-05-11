@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box{
+			position: relative;
+			width: 100%;
+			height: 1000px;
+
+		}
+		#smallbox{
+			position: absolute;
+			width: 450px;
+			height: 450px;
+			border: 1px solid #ccc;
+		}
+		#smallbox img{
+			width: 450px;
+			height: 450px;
+		}
+		#list{
+			width: 200px;
+			height: 60px;
+			position: absolute;
+			top:546px; 
+			left: 100px;
+		}
+		#list ul{
+			width: 300px;
+			height: 60px;
+		}
+		#list li{
+			list-style: none;
+			margin-left: 20px;
+			float: left;
+			cursor: pointer;
+
+		}
+		.active{
+			border: 1px solid #f00;
+		}
+		#bigbox{
+			position: absolute;
+			left: 452px;
+			border: 1px solid #ccc;
+			width: 500px;
+			height:500px;
+			overflow: hidden;
+			display: none;
+		}
+		#bigbox img {
+			height: 700px;
+			width: 700px;
+			position: absolute;
+		}
+		#mask{
+			height: 300px;
+			width: 300px;
+			background: rgba(255,255,0,0.3);
+			position: absolute;
+			top: 0px;
+			cursor: move;
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		function $(id){
+			return document.getElementById(id);
+		}
+		window.onload = function(){
+			var aLi =$('list').getElementsByTagName('li');
+			var oSmallbox = $('smallbox');
+			var oBigbox = $('bigbox');
+			var oMask = $('mask');
+			console.log(aLi);
+			for(var i = 0;i<aLi.length;i++){
+				aLi[i].index = i;
+				aLi[i].onmouseover = function(){
+					for(var j=0;j<aLi.length;j++){
+						aLi[j].className= '';
+					}
+				this.className = 'active';
+				oSmallbox.children[0].src='images/dn' +(this.index +2)+'.jpg';
+				oBigbox.children[0].src='images/dn' +(this.index +2)+'.jpg';
+				}
+			}
+			oSmallbox.onmouseover = function (ev){
+				var oEvent = ev ||event;
+				oMask.style.display='block';
+				oBigbox.style.display='block';
+				oSmallbox.onmousemove = function (ev){
+					var oEvent = ev || event;
+					var l = oEvent.clientX - oMask.offsetWidth*0.5;
+					var t = oEvent.clientY - oMask.offsetHeight*0.5;
+					if(l<0){
+						l=0;
+					}else if(l > (oSmallbox.offsetWidth - oMask.offsetWidth)){
+						l = oSmallbox.offsetWidth - oMask.offsetWidth;
+					}
+					if(t <0){
+						t=0;
+					}else if(t > (oSmallbox.offsetHeight - oMask.offsetHeight)){
+						t = oSmallbox.offsetHeight - oMask.offsetHeight;
+					}
+					oMask.style.left = l +'px';
+					oMask.style.top = t +'px';
+					var oBigImg = oBigbox.children[0];
+					oBigImg.style.left = -l /(oMask.offsetWidth /oBigImg.offsetWidth) +'px';
+					oBigImg.style.top = -t /(oMask.offsetHeight/oBigImg.offsetHeight) +'px';
+					console.log(oBigImg.style.left);
+				}
+			}
+			oSmallbox.onmouseout= function (){
+				oMask.style.display= 'none';
+				oBigbox.style.display='none';
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="smallbox">
+			<img src="images/dn1.jpg" alt="">
+			<span id="mask"></span>
+		</div>
+		<div id="list">
+			<ul>
+				<li class="active"><img src="images/dn2.jpg" alt=""></li>
+				<li><img src="images/dn3.jpg" alt=""></li>
+				<li><img src="images/dn4.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div id="bigbox">
+			<img src="images/dn5.jpg" alt="">
+		</div>
+	</div>
+</body>
+</html>

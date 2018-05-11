@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function  createPerson(name,age){
+			// var obj = new Object ();
+			this.name = "tom";
+			this.age = 18;
+			// return obj;
+
+		}
+		
+		createPerson.sum = function(a1,a2){
+			return a1+a2;
+		}
+		console.log(createPerson.sum(2,3));
+
+		createPerson.prototype.showName = function (){
+			console.log( "I am "+this.name );
+		}
+		createPerson.prototype.showAge= function(){
+			console.log("I am" +this.age);
+		}
+		var p1 =  new createPerson("tom",19);
+		var p2 =  new createPerson("lisa",19);
+
+		// console.log(p1.showAge());
+		// console.log(p1.showName());
+		p1.showName();
+		p2.showName();
+		p1.showAge();
+		// var p3 = new createPerson (2,3);
+		// p3.sum();
+		// console.log(p3.sum());
+		console.log(p1.showAge == p2.showAge);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

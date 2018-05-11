@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM</title>
+	<script type="text/javascript">
+		window.onload = function  (){
+			var oBtn = document.getElementById('btn');
+			var oBtn1 = document.getElementById('btn1');
+			oBtn.onclick = function(){
+				window.open ("about:blank","_blank");
+			}
+			oBtn1.onclick = function(){
+				window.close();
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" name="" value="新建窗口" id="btn">
+	<input type="button" name="" value="关闭窗口" id="btn1">
+</body>
+</html>

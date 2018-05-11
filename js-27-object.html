@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断对象的属性是否有改</title>
+	<script type="text/javascript">
+		function Person(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		Person.prototype.showName = function(){
+			console.log("I am" +this.name);
+		}
+		Person.prototype.showAge = function(){
+			console.log("I am " +this.age);
+		}
+		
+		var p1 = new Person("tom",10);
+		//LES是定义在原型链上的属性，实例p1上没有。
+		Person.prototype.LES = 2;
+		var p2 = new Person("leo",99);
+		//判断实例p1是否具有属性name(指的是实例上的属性)
+		console.log(p1.hasOwnProperty('name'));
+		console.log(p1.hasOwnProperty('LES'));
+		//使用for in 循环既可以判断属性是否在实例上，也可以判断属性是否在原型链上。
+		console.log("name" in p1);
+		console.log("LES" in p1);
+		//此函数可以判断只在原型链上的属性
+		// function hasPrototypeProperty(obj,attr){
+		// 	return !obj.hasOwnProperty(attr)  && (attr in obj)
+		// }
+			function hasPrototypeProperty(attr,obj){
+			 	return !obj.hasOwnProperty(attr)  && (attr in obj);
+			}
+			console.log(hasPrototypeProperty ("LES",p1));
+
+		
+	</script>
+
+</head>
+<body>
+	
+</body>
+</html>

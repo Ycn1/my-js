@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ommousedown</title>
+	<style type="text/css">
+		div{
+			height: 100px;
+			width:100px;
+			background: red;
+			position:absolute;
+			top:0px;
+			left: 0px;
+		}
+		#div2{
+			position: absolute;
+			top: 300px;
+			left: 700px;
+			background: grey;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function (){
+			var oDiv = document.getElementById('div1');
+			var oDiv2 = document.getElementById('div2');
+			oDiv.onmousedown = function(ev){
+				var oEvent = ev||event;
+				var dis1 = oEvent.clientX - oDiv.offsetLeft ;
+				var dis2 = oEvent.clientY - oDiv.offsetTop ;
+				document.onmousemove = function (ev){
+					var oEvent= ev ||event;
+					  oDiv.style.left = oEvent.clientX - dis1 +'px';
+					  oDiv.style.top = oEvent.clientY - dis1 +'px';
+					  if((oDiv.offsetWidth + oDiv.offsetLeft >oDiv2.offsetLeft)&&
+					  	(oDiv2.offsetLeft + oDiv2.offsetWidth >oDiv.offsetLeft)&&
+					  	(oDiv.offsetTop+oDiv.offsetWidth > oDiv2.offsetTop)&&
+					  	(oDiv2.offsetHeight+oDiv2.offsetTop >oDiv.offsetTop)){
+					  	oDiv2.style.background='gold';
+					  }else{
+					  	oDiv2.style.background= 'grey';
+					  }
+					}
+				document.onmouseup = function(){
+					document.onmousemove=null;
+					document.onmouseup = null;
+				}
+				
+			}	
+		}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型继承案例</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#btn{
+			height: 10px;
+			overflow: hidden;
+			height: 100px;
+		}
+		#btn li{
+			list-style: none;
+			height: 50px;
+			width: 80px;
+			border: 1px solid #000;
+			border-radius: 20px;
+			text-align: center;
+			color:white;
+			background: black;
+			float: left;
+			margin-right: 10px;
+			cursor: pointer;
+		}
+		#btn .active{
+			background: rgba(255,255,0,0.5);
+			color:black;
+		}
+		#content{
+			
+		}
+		#content li{
+			height: 200px;
+			width: 200px;
+			border: 1px solid #000;
+			list-style: none;
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		//面向过程的实现代码
+		/*
+		window.onload = function(){
+			var oBtn = document.getElementById('btn').children;
+			var oContent = document.getElementById('content').children;
+			for(var i =0;i<oBtn.length;i++){
+				oBtn[i].index = i;
+				oBtn[i].onclick = function(){
+					for(var j=0;j<oBtn.length;j++){
+						oBtn[j].className = '';
+						oContent[j].style.display ='none';
+					}
+					oBtn[this.index].className='active';
+					oContent[this.index].style.display='block';
+				}
+				}	
+		}
+		*/
+		/*
+		var oBtn =null;
+		var oContent= null;
+		
+		window.onload = function(){
+			new Tab();
+		}
+		 function Tab(){
+			oBtn = document.getElementById('btn').children;
+			oContent = document.getElementById('content').children;
+			for(var i =0;i<oBtn.length;i++){
+
+				oBtn[i].index = i;
+				oBtn[i].onclick =fnClick;
+
+			}
+		}
+		function fnClick(){
+					for(var j=0;j<oBtn.length;j++){
+						oBtn[j].className = '';
+						oContent[j].style.display ='none';
+					}
+					oBtn[this.index].className='active';
+					oContent[this.index].style.display='block';
+		}
+			*/
+		//var oBtn =null;
+		//var oContent= null;
+		/*
+		window.onload = function(){
+			new Tab();
+		}
+		 function Tab(){
+			this.oBtn = document.getElementById('btn').children;
+			this.oContent = document.getElementById('content').children;
+			for(var i =0;i<this.oBtn.length;i++){
+
+				this.oBtn[i].index = i;
+				this.oBtn[i].onclick =this.fnClick.bind(this,this.oBtn[i]);
+
+			}
+		}
+		Tab.prototype.fnClick= function(oBtn){
+					for(var j=0;j<this.oBtn.length;j++){
+						this.oBtn[j].className = '';
+						this.oContent[j].style.display ='none';
+					}
+					this.oBtn[oBtn.index].className='active';
+					this.oContent[oBtn.index].style.display='block';
+		}
+		*/
+		window.onload = function(){
+			new Tab();
+		}
+		 function Tab(){
+			this.oBtn = document.getElementById('btn').children;
+			this.oContent = document.getElementById('content').children;
+			var _self = this;
+			for(var i =0;i<this.oBtn.length;i++){
+				this.oBtn[i].index = i;
+				this.oBtn[i].onclick =function(){
+					_self.fnClick(this);
+				}
+
+			}
+		}
+		Tab.prototype.fnClick= function(oBtn){
+					for(var j=0;j<this.oBtn.length;j++){
+						this.oBtn[j].className = '';
+						this.oContent[j].style.display ='none';
+					}
+					this.oBtn[oBtn.index].className='active';
+					this.oContent[oBtn.index].style.display='block';
+		}
+	</script>
+</head>
+<body>
+	<ul id="btn">
+		<li class="active">btn1</li>
+		<li>btn2</li>
+		<li>btn3</li>
+		<li>btn4</li>
+	</ul>
+	<ul id="content">
+		<li style="display: block;">content1</li>
+		<li>content2</li>
+		<li>content3</li>
+		<li>content4</li>
+	</ul>
+</body>
+</html>

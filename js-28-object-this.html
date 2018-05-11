@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象—— this的指向</title>
+	<script type="text/javascript">
+		window.onload =function (){
+			function show(n1,n2){
+				console.log(this);
+			}
+			show();
+			//call为系统自带的函数的属性
+			show.call(); == show();
+			//{name:"tom"}为this的值
+			show.call ({name:"tom"},100,200);
+			//show.apply传递的参数值需要数组的形式打开
+			show.apply({name:"tom"},[100,200]);
+			//show.bind 的返回值是一个函数，
+			show.bind({name:"tom"},100,200);//此时不打印。
+			var fn = show.bind({name:"tom"},100,200);
+			fn();
+			//或者是直接在后面加上括号，即直接执行返回的函数。
+			show.bind({name:"tom"},100,200)();
+		} 
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

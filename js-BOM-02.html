@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM</title>
+	<script type="text/javascript">
+		window.onload = function (){
+			var oTxt = document.getElementById('txt');
+			var oBtn = document.getElementById('btn');
+			oBtn.onclick = function (){
+				var Val = oTxt.value;
+				var oWin = window.open("about:blank");
+				oWin.document.write(Val);
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="txt">
+	<input type="button" name="" value="运行" id="btn">
+</body>
+</html>

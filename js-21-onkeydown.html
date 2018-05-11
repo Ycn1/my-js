@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>onkeydown</title>
+	<style type="text/css">
+		div{
+			height: 100px;
+			width:100px;
+			border: 1px solid #000;
+		}
+		#div2{
+			display: none;
+		}
+	</style>
+</head>
+<script type="text/javascript">
+	window.onload = function (){
+		var oDiv1 = document.getElementById('div1');
+		var oDiv2 = document.getElementById('div2');
+		document.onkeydown = function (ev){
+			var oEvent = ev ||event
+			console.log (oEvent.keyCode);
+			//当按下Enter或者ctrl键时候div的北京颜色变为红色；
+			if(oEven.keyCode = 13 || oEven.ctrlKey){
+				oDiv1.style.background = 'red';
+			}
+		}
+		document.oncontextmenu = function (ev){
+			
+			var oEvent = ev ||event
+			// alert (1);
+			//return false;//阻止默认的右键行为；
+			oEvent.preventDefault();//阻止默认的右键行为；
+			oDiv2.style.left = oEvent.clientX + 'px';
+			oDiv2.style.top = oEvent.clientY +'px';
+			oDiv2.style.display = 'block';
+		}
+	}
+</script>
+<body>
+	<div id="div1"></div>
+	<div id="div2">qwfqwfqhoibbc</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ommouse</title>
+	<style type="text/css">
+		span{
+			display: none;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function (){
+			var oTxt = document.getElementById('txt');
+			var oSub = document.getElementById('sub');
+			var oP = document.getElementById('sp');
+			var oUl = document.getElementById('ul1'); 
+			var Data = [Tom,Ammy];
+			oTxt.onfocus = function (){
+				oP.innerHTML = '请输入您的手机号码';
+			}
+			oTxt.onblur = function (){
+				var t = oTxt.value.length;
+				if(t>=3 && t<=6){
+					oP.innerHTML= '';
+				}
+				else {
+					oP.innerHTML = '输入有误，请您重新输入';
+				}
+				for (var i = 0;i<Data.length;i++){
+					var oLi = document.createElement('li');
+					oLi.innerHTML = Data[i];
+					oUl.appendChild(oLi);
+				}
+			}
+			// oTxt.onkeyPress = function(){
+			// 	for (var i = 0;i<data.length;i++){
+			// 		var oLi = document.createElement('li');
+			// 		oLi.innerHTML= data[i];
+			// 		oUl.appendChild(oLi);
+			// 	}
+			// }
+		}
+	</script>
+</head>
+<body>
+	<form action="http://www.kuazhu.com">
+		<div>
+			<input type="text" name="" id="txt">
+			<p id="sp"></p>
+			<ul id="ul1">
+				
+			</ul>
+		</div>
+		<div>
+			<input type="submit" name="" id="sub">
+		</div>
+	</form>
+</body>
+</html>

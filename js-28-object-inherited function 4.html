@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象，函数的继承2</title>
+	<script type="text/javascript">
+		function Person(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		Person.prototype.showName = function(){
+			console.log("I am" +this.name);
+		}
+		/*
+		Person.prototype.showAge = function(){
+			console.log("I am " +this.age);
+		}*/
+		Object.defineProperty(Person.prototype,"showAge",{value:function(){
+			console.log("I am "+this.age+" years old");
+		}});
+		function Student(name,age,className){
+			Person.call(this,name,age);//属性的继承（Student函数的前两个属性继承了Person的前俩属性）
+			this.className = className;
+		}
+		var obj = Object.create(Person.prototype);
+		Student.prototype = obj;
+		Student.prototype.constructor = Student;
+		Student.prototype.showclassName = function (){
+			console.log ("i am from " +this.className);
+		}
+		
+		var p1 = new Person("tom",10);
+		var p2 = new Student("leo",30,"computer");
+		//此时p1的showage可以执行
+		console.log(p1.showAge());
+		//此时p2的showage不可以执行
+		console.log(p2.showAge());
+		console.log(p2.showclassName());
+		// console.log(p1);
+		// Student.prototype = Person.prototype;
+		// console.log(p1.showClass);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

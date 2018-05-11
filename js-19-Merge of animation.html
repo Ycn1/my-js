@@ -83,6 +83,9 @@
 				  }
 				  if(isStopAll){
 				  	clearInterval(obj.timer);
+				    fnEnd(){
+				    	fnEnd();
+				    }
 				    }
 				  
 				},30)
@@ -93,7 +96,7 @@
 				// animation (oBox,'opacity',30,false,function(){
 				// 	animation(oBox,'height',500,false);
 				// });
-				animation(oBox,{'height':500,'width':100,'opacity':50},false);
+				animation(oBox,{'height':500,'width':100,'opacity':50},false,);
 
 			}
 		}

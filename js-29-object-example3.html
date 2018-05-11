@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽案例</title>
+	<style type="text/css">
+		#btn{
+			width: 200px;
+			height: 200px;
+			background: red;
+			position: absolute;
+		}
+	</style>
+	<script type="text/javascript">
+		/*这是面向过程的代码
+		window.onload = function(){
+			var oBtn = document.getElementById('btn');
+			console.log(oBtn);
+			oBtn.onmousedown = function(ev){
+				var oEvent =ev || event;
+				var disX = oEvent.clientX - oBtn.offsetLeft;
+				var disY = oEvent.clientY - oBtn.offsetTop;
+			document.onmousemove = function (ev){
+				var oEvent =ev ||event;
+				oBtn.style.left =oEvent.clientX - disX +'px';
+				oBtn.style.top= oEvent.clientY -disY +'px';
+				}
+			}
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup =null;
+			}
+			
+		}
+		*/
+		/*
+		var oBtn =null;
+		var disX=0;
+		var disY =0;
+		window.onload = function(){
+			oBtn = document.getElementById('btn');
+			oBtn.onmousedown = fnDown;
+		}
+		function fnDown (ev){
+			var oEvent =ev || event;
+				 disX = oEvent.clientX - oBtn.offsetLeft;
+				 disY = oEvent.clientY - oBtn.offsetTop;
+				document.onmousemove = fnMove;
+				document.onmouseup = fnUp;
+			}
+		function fnMove (ev){
+			var oEvent =ev ||event;
+				oBtn.style.left =oEvent.clientX - disX +'px';
+				oBtn.style.top= oEvent.clientY -disY +'px';
+		}
+		function fnUp (){
+			document.onmousemove = null;
+				document.onmouseup =null;
+		}*/
+		// 
+		window.onload = function(){
+			new Drag({height:200,width:200,background:'red'});
+			new limitDrag({height:200,width:200,background:'pink'});
+
+		}
+		function Drag(opation){
+			//this.oBtn = document.getElementById('btn');
+			this.disX = 0;
+			this.disY=0;
+			this.width = opation.width;
+			this.height = opation.height;
+			this.background = opation.background;			/*			
+			this.oBtn = document.createElement('div');
+			this.oBtn.style.height=opation.height+'px';
+			this.oBtn.style.width = opation.width+'px';
+			this.oBtn.style.background =opation.background;
+			this.oBtn.style.position ='absolute';
+			document.body.appendChild(this.oBtn);
+			*/
+			this.init();
+			/*
+			var _self =this;
+			this.oBtn.onmousedown =function (){
+				_self.fnDown();
+			
+			};*/
+			this.BindEvent();
+		}
+		Drag.prototype.init = function(){
+			this.oBtn = document.createElement('div');
+			console.log(this);
+			this.oBtn.style.height=this.height+'px';
+			this.oBtn.style.width = this.width+'px';
+			this.oBtn.style.background =this.background;
+			this.oBtn.style.position ='absolute';
+			document.body.appendChild(this.oBtn);
+		}
+		Drag.prototype.BindEvent = function (){
+			/*这是使用——self的一种方法
+			var _self = this;
+			this.oBtn.onmousedown = function (ev){
+				var oEvent =ev || event;
+				 _self.disX = oEvent.clientX - _self.oBtn.offsetLeft;
+				_self.disY = oEvent.clientY - _self.oBtn.offsetTop;
+				document.onmousemove = _self.fnMove.bind(_self);
+				document.onmouseup = _self.fnUp;
+			}
+			*/
+			//下面是使用bind的第二中方法
+			this.oBtn.onmousedown = function (ev){
+				var oEvent =ev || event;
+				 this.disX = oEvent.clientX - this.oBtn.offsetLeft;
+				this.disY = oEvent.clientY - this.oBtn.offsetTop;
+				document.onmousemove = this.fnMove.bind(this);
+				document.onmouseup = this.fnUp;
+			}.bind(this);
+		}
+		Drag.prototype.fnMove = function (ev){
+			var oEvent =ev ||event;
+			console.log(this);
+				this.oBtn.style.left =oEvent.clientX - this.disX +'px';
+				this.oBtn.style.top= oEvent.clientY -this.disY +'px';
+				//this.fnLimit();
+				console.log(this.oBtn.left);
+		}
+		Drag.prototype.fnUp=function (){
+			document.onmousemove = null;
+				document.onmouseup =null;
+		}
+		function limitDrag (opation){
+			Drag.call(this,opation);
+		}
+		//limitDrag.prototype = Object.prototype(Drag.prototype);
+		limitDrag.prototype = Object.create(Drag.prototype);
+
+		limitDrag.prototype.constructor = limitDrag;
+		limitDrag.prototype.fnMove= function (ev){
+			var oEvent = ev || event;
+			var l = oEvent.clientX - this.disX;
+			var t = oEvent.clientY - this.disY;
+			if(l<0){
+				l =0;
+			}else if(l> window.innerWidth - this.oBtn.offsetWidth){
+				l> window.innerWidth - this.oBtn.offsetWidth;
+			}
+			if(t <0){
+				t =0;
+			}else if(t > window.innerHeight - this.oBtn.offsetHeight){
+				t > window.innerHeight - this.oBtn.offsetHeight;
+			}
+			this.oBtn.style.left =  l +'px';
+			this.oBtn.style.top = t +'px';
+		}
+	</script>
+</head>
+<body>
+	<!-- <div id="btn"></div> -->
+</body>
+</html>

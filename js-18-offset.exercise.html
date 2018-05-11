@@ -26,23 +26,18 @@
 			var oBox =document.getElementById('box');
 			var timer='';
 			oBtn.onclick = function () {
-				// clearInterval(timer);
-				// if(oBox.offsetLeft<300){
-				// 	iSpeed = 10;
-				// }
-				// else{
-				// 	iSpeed=-10;
-				// }
+				clearInterval(timer);
+				if(oBox.offsetLeft<300){
+					iSpeed = 10;
+				}
+				else{
+					iSpeed=-10;
+				}
 				timer= setInterval(functin(){
-					// if(Math.abs(300-oBox.offsetLeft)<=Math.abs(iSpeed)){
-					// 
-
-					// }
-					if(oBox.offsetLeft<=300){
-						// oBox.style.left = offsetLeft + 10 +'px';
-						alert(oBox.offsetLeft);
+					if(Math.abs(300-oBox.offsetLeft)<=Math.abs(iSpeed)){
+						oBox.style.left = 
 					}
-				},1000)
+				,1000)
 			} 
 		}
 	</script>

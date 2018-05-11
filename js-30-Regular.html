@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则体验</title>
+</head>
+<body>
+	<textarea id="txt1"></textarea>
+	<input type="button" name="" value="提交" id="btn">
+	<textarea id="txt2"></textarea>
+</body>
+<script type="text/javascript">
+		var oTxt1 = document.getElementById('txt1');
+		var oBtn = document.getElementById('btn');
+		var oTxt2 = document.getElementById('txt2');
+		oBtn.onclick = function(){
+			//只执行一次查找is
+			//var reg = /is/
+			//在全部的字符中查找is
+			//var reg = /is/g
+			//在全部中查找is 并且忽略大小写
+			//var reg = /is/gi
+			//查找的是整个单词
+			//var reg = /\bis\b/
+			//查找的是任意字符,单个的 例如<p>
+			//var reg = /<\w>/
+			//查找的是一个或者一个以上的任意字符 例如<div>
+			//var reg =/<\w+>/
+			//可以查找结束标签即带反斜杠
+			var reg = /<[\w|\/]+>/;
+			var str = oTxt1.value
+			oTxt2.value = str.replace(reg,'*');
+		}
+
+	</script>
+</html>

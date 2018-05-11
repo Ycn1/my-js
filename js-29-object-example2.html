@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽案例</title>
+	<style type="text/css">
+		#btn{
+			width: 200px;
+			height: 200px;
+			background: red;
+			position: absolute;
+		}
+	</style>
+	<script type="text/javascript">
+		/*这是面向过程的代码
+		window.onload = function(){
+			var oBtn = document.getElementById('btn');
+			console.log(oBtn);
+			oBtn.onmousedown = function(ev){
+				var oEvent =ev || event;
+				var disX = oEvent.clientX - oBtn.offsetLeft;
+				var disY = oEvent.clientY - oBtn.offsetTop;
+			document.onmousemove = function (ev){
+				var oEvent =ev ||event;
+				oBtn.style.left =oEvent.clientX - disX +'px';
+				oBtn.style.top= oEvent.clientY -disY +'px';
+				}
+			}
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup =null;
+			}
+			
+		}
+		*/
+		/*
+		var oBtn =null;
+		var disX=0;
+		var disY =0;
+		window.onload = function(){
+			oBtn = document.getElementById('btn');
+			oBtn.onmousedown = fnDown;
+		}
+		function fnDown (ev){
+			var oEvent =ev || event;
+				 disX = oEvent.clientX - oBtn.offsetLeft;
+				 disY = oEvent.clientY - oBtn.offsetTop;
+				document.onmousemove = fnMove;
+				document.onmouseup = fnUp;
+			}
+		function fnMove (ev){
+			var oEvent =ev ||event;
+				oBtn.style.left =oEvent.clientX - disX +'px';
+				oBtn.style.top= oEvent.clientY -disY +'px';
+		}
+		function fnUp (){
+			document.onmousemove = null;
+				document.onmouseup =null;
+		}*/
+		// 
+		window.onload = function(){
+			new Drag();
+		}
+		function Drag(){
+			this.oBtn = document.getElementById('btn');
+			this.disX = 0;
+			this.disY=0;
+			var _self =this;
+			this.oBtn.onmousedown =function (){
+				_self.fnDown();
+				//console.log(this);
+			};
+		}
+		Drag.prototype.fnDown =function(ev){
+			var oEvent =ev || event;
+				//console.log(this);
+				 this.disX = oEvent.clientX - this.oBtn.offsetLeft;
+				 this.disY = oEvent.clientY - this.oBtn.offsetTop;
+				document.onmousemove = this.fnMove.bind(this);
+				document.onmouseup = this.fnUp;
+			}
+		Drag.prototype.fnMove = function (ev){
+			var oEvent =ev ||event;
+			console.log(this);
+				this.oBtn.style.left =oEvent.clientX - this.disX +'px';
+				this.oBtn.style.top= oEvent.clientY -this.disY +'px';
+				console.log(this.oBtn.left);
+		}
+		Drag.prototype.fnUp=function (){
+			document.onmousemove = null;
+				document.onmouseup =null;
+		}
+	</script>
+</head>
+<body>
+	<div id="btn"></div>
+</body>
+</html>

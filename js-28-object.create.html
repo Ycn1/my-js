@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>object -create </title>
+	<script type="text/javascript">
+		var obj1 = {name:"tom"}
+		var obj2 =Object.create(obj1);
+		console.log (obj2);
+		//这样创建的空对象完全是空的什么都没
+		var obj3 = Object.create (null);
+		console.log(obj3);
+		//这样创建的空对象具有__proto__
+		var obj4 = {};
+		console.log (obj4);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

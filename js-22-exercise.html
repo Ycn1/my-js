@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>exercise</title>
+	<style type="text/css">
+		#box1{
+			height: 50px;
+			width: 200px;
+			background: grey;
+			position: relative;
+		}
+		#box2{
+			height: 50px;
+			width: 50px;
+			background: pink;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+		#box3{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+		#box4{
+			height: 200px;
+			width: 200px;
+			border: 1px solid #000;
+			position: relative;
+			overflow: hidden;
+		}
+		#box5{
+			position: absolute;
+			top: 0px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oBox1 = document.getElementById('box1');
+			var oBox2 = document.getElementById('box2');
+			var oBox3 = document.getElementById('box3');
+			var oBox4 = document.getElementById('box4');
+			var oBox5 = document.getElementById('box5');
+			oBox2.onmousedown = function (ev){
+				var oEvent = ev || event;
+				disX = oEvent.clientX  - oBox2.offsetLeft;
+				var m = 0;
+				document.onmousemove = function (ev){
+					var oEvent = ev|| event;
+					 m = oEvent.clientX - disX;
+					// console.log(oBox2.style.left);
+					if(m < 0){
+						m = 0 ;
+					}
+					 else if(m > oBox1.offsetWidth - oBox2.offsetWidth){
+						m =oBox1.offsetWidth - oBox2.offsetWidth ;
+						}
+						var scale = m / (oBox1.offsetWidth - oBox2.offsetWidth);
+						console.log (scale);
+					oBox2.style.left = m +'px';
+					oBox3.style.opacity = scale;
+					console.log(oBox5.offsetTop - oBox4.offsetHeight);	
+					oBox5.style.top = -(oBox5.offsetTop + oBox4.offsetHeight) *scale +'px';
+										
+				}
+				oBox1.onmousewheel = function (ev){
+					var oEvent = ev || event;
+					console.log(oEvent.wheelDelta);
+					if(oEvent.wheelDelta >0 ){
+						m -= 10;
+					}
+					else{
+						m += 10;
+					}
+					if(m < 0){
+						m = 0 ;
+					}
+					 else if(m > oBox1.offsetWidth - oBox2.offsetWidth){
+						m =oBox1.offsetWidth - oBox2.offsetWidth ;
+						}
+						var scale = m / (oBox1.offsetWidth - oBox2.offsetWidth);
+						console.log (scale);
+					oBox2.style.left = m +'px';
+					oBox3.style.opacity = scale;
+				}
+				document.onmouseup = function (){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				}
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div id="box1">
+		<div id="box2"></div>
+	</div>
+	<div id="box3"></div>
+	<div id="box4">
+		<div id="box5">
+			事件对象 event
+事件对象兼容处理
+
+事件流
+
+事件冒泡 事件冒泡指具体元素接受事件,然后逐级向上传播事件 阻止事件冒泡 event.stopPropagation()
+
+案例: 下拉菜单
+鼠标事件
+鼠标移动 onmousemove
+
+获取坐标
+
+event.clientX 和 event.clientY是鼠标的可视区坐标 通常情况需要加上滚动距离
+
+案例1: 随着鼠标移动的物体
+案例2: 随着鼠标移动的多个物体
+键盘事件
+键盘按下 obj.onkeydown
+
+键盘抬起 obj.onkeyup
+
+键盘代码 event.keyCode
+
+辅助键 event.ctrlKey event.shiftKey event.altKey
+
+案例1:左右键移动物体
+
+案例2:ctrl+回车提交
+
+默认行为
+默认行为是浏览器的自带行为
+
+document.oncontextmenu 右键菜单
+
+阻止默认行为
+
+方法一 return false
+方法二 event.preventDefault()
+案例1:右键菜单
+案例2:只能输入数字的输入框
+拖拽
+原理:鼠标和物体的距离始终不变
+
+obj.onmousedown obj.onmouseup
+
+基础拖拽
+限制在浏览器中
+限制在父容器中
+磁性吸附
+带框的拖拽
+自定义滚动条(控制大小,控制透明度,控制文字)
+事件
+事件是用户或者浏览器执行的某中动作,如click/mouseover
+
+事件处理程序是响应事件的函数,事件处理程序以on开头,如onclick/onmouseover
+
+事件绑定
+
+obj.addEventListener(事件名,函数,false) 事件名没有'on'
+
+事件移除
+obj.removeEventListener(事件名,函数,false) 移除事件监听只能是移除有函数名的，不能移除匿名函数的
+
+
+		</div>
+	</div>
+</body>
+</html>

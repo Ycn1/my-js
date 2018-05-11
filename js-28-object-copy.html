@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象的拷贝</title>
+	<script type="text/javascript">
+		window.onload = function (){
+			var obj = {name:"tom",age:19};
+			var obj2 = obj;
+			obj2.sex = "falme";
+			console.log(obj2);
+			var obj3 ={};
+			for(key in obj){
+			 obj3[key] = obj[key];
+			}
+			obj3.height =12;
+			console.log(obj3);
+			console.log(obj);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
